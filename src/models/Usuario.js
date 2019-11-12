@@ -1,4 +1,8 @@
 const { Schema, model } = require("mongoose");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+
+const authConfig = require("../config/auth");
 
 const UsuarioSchema = new Schema(
   {
@@ -9,13 +13,10 @@ const UsuarioSchema = new Schema(
     email: {
       type: String,
       required: true,
-      unique: true
+      unique: true,
+      lowercase: true
     },
     password: {
-      type: String,
-      required: true
-    },
-    token: {
       type: String,
       required: true
     }
@@ -24,4 +25,27 @@ const UsuarioSchema = new Schema(
     timestamps: true
   }
 );
+
+UsuarioSchema.pre("save", async function(next) {
+  if (!this.isModified("password")) {
+    return next();
+  }
+
+  this.password = await bcrypt.hash(this.password, 8);
+  //bcrypt gera o hash
+});
+
+UsuarioSchema.methods = {
+  compareHash(password) {
+    return bcrypt.compare(password, this.password);
+  }
+};
+
+UsuarioSchema.statics = {
+  generateToken({ id }) {
+    return jwt.sign({ id }, authConfig.secret, {
+      expiresIn: authConfig.ttl
+    });
+  }
+};
 module.exports = model("Usuario", UsuarioSchema);

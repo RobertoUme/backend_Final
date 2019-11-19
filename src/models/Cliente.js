@@ -1,26 +1,23 @@
 const { Schema, model } = require("mongoose");
 
-const CotacaoSchema = new Schema(
+const ClienteSchema = new Schema(
   {
-    mes: {
-      type: Number,
-      required: true
-    },
-    commerce_id: {
+    nome: {
       type: String,
       required: true
     },
-    user_id: {
+    cidade: {
       type: String,
       required: true
     },
-    lista: {
+    estado: {
       type: String,
       required: true
     }
   },
+
   {
     timestamps: true
   }
 );
-module.exports = model("Cotacao", CotacaoSchema);
+module.exports = model("Cliente", ClienteSchema);

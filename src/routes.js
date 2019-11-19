@@ -2,8 +2,8 @@ const express = require("express");
 
 const routes = express.Router();
 const UserController = require("./controllers/UserController");
-const CommerceController = require("./controllers/CommerceController");
-const QuoteController = require("./controllers/QuoteController");
+const ClienteController = require("./controllers/ClienteController");
+const ServiceController = require("./controllers/ServiceController");
 const SessionController = require("./controllers/SessionController");
 const authMiddleware = require("./middlewares/auth");
 
@@ -16,19 +16,19 @@ routes.put("/usuario/:email", UserController.update);
 
 routes.post("/sessions", SessionController.store);
 
-routes.post("/c", CommerceController.store);
-routes.post("/comercio", CommerceController.store);
-routes.get("/comercio", CommerceController.list);
-routes.get("/comercio/:id", CommerceController.index);
-routes.put("/comercio/:id", CommerceController.update);
-routes.delete("/comercio/:id", CommerceController.destroy);
+routes.post("/c", ClienteController.store);
+routes.post("/cliente", ClienteController.store);
+routes.get("/cliente", ClienteController.list);
+routes.get("/cliente/:id", ClienteController.index);
+routes.put("/cliente/:id", ClienteController.update);
+routes.delete("/cliente/:id", ClienteController.destroy);
 
-routes.post("/co", QuoteController.store);
-routes.post("/cotacao", QuoteController.store);
-routes.get("/cotacao", QuoteController.list);
-routes.get("/cotacao/:id", QuoteController.index);
-routes.put("/cotacao/:id", QuoteController.update);
-routes.delete("/cotacao/:id", QuoteController.destroy);
+routes.post("/se", ServiceController.store);
+routes.post("/service", ServiceController.store);
+routes.get("/service", ServiceController.list);
+routes.get("/service/:id", ServiceController.index);
+routes.put("/service/:id", ServiceController.update);
+routes.delete("/service/:id", ServiceController.destroy);
 
 routes.use(authMiddleware);
 routes.delete("/usuario/:id", UserController.destroy);

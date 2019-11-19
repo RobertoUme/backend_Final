@@ -6,7 +6,7 @@ const server = express();
 server.use(express.json());
 server.use(cors());
 
-mongoose.connect("mongodb://localhost:27017/cesta",{
+mongoose.connect("mongodb://localhost:27017/empresa",{
   useNewUrlParser:true,
   useUnifiedTopology: true
 });

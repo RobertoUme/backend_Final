@@ -1,4 +1,4 @@
 module.exports={
-  secret: "Beterraba",
-  ttl: "2h"
+  secret: "Assentamento",
+  ttl: "1d"
 }

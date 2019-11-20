@@ -10,8 +10,8 @@ const ServicosSchema = new Schema(
       type: String,
       required: true
     },
-    mes: {
-      type: Number,
+    dia:{
+      type: Date,
       required: true
     },
     valor: {

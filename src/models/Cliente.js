@@ -13,6 +13,10 @@ const ClienteSchema = new Schema(
     estado: {
       type: String,
       required: true
+    },
+    tamanho:{
+      type: Number,
+      required: true
     }
   },
 
